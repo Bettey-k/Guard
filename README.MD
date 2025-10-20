@@ -4,21 +4,21 @@
 
 ---
 
-## 📖 Overview
+##  Overview
 **Guard** is an open-source project designed to automatically identify and monitor racist or hateful speech in Amharic and English.  
 It helps moderators and researchers track toxic trends, moderate online discussions, and build a safer digital environment.
 
 ---
 
-## 🎯 Purpose
-- 🧠 Detect offensive Amharic and English content  
-- 📡 Support social media monitoring (starting with Telegram)  
-- ⚙️ Provide real-time alerts for flagged content  
-- 📊 Offer dashboards for trend analytics  
+##  Purpose
+-  Detect offensive Amharic and English content  
+- Support social media monitoring (starting with Telegram)  
+-  Provide real-time alerts for flagged content  
+-  Offer dashboards for trend analytics  
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |--------|-------------|
@@ -32,20 +32,19 @@ It helps moderators and researchers track toxic trends, moderate online discussi
 
 ---
 
-## 🏗️ Architecture Diagram
+##  Architecture Diagram
 
 ```mermaid
 flowchart LR
-    A[Telegram / Facebook] --> B[Listener (Telethon)]
-    B --> C[FastAPI Backend]
-    C --> D[PostgreSQL Database]
-    C --> E[Next.js Dashboard]
-    C --> F[Alerts (Telegram/Email)]
+    A["Telegram / Facebook"] --> B["Listener (Telethon)"]
+    B --> C["FastAPI Backend"]
+    C --> D["PostgreSQL Database"]
+    C --> E["Next.js Dashboard"]
+    C --> F["Alerts System (Telegram/Email)"]
 ```
 
----
 
-## 📂 Folder Structure
+##  Folder Structure
 
 ```
 guard/
@@ -130,25 +129,25 @@ docker-compose up -d
 
 ---
 
-## 🧠 AI Model
+##  AI Model
 The AI uses [Davlan/xlm-roberta-base-amharic-sentiment](https://huggingface.co/Davlan/xlm-roberta-base-amharic-sentiment).  
 You can test it manually:
 ```python
 from transformers import pipeline
 analyzer = pipeline("text-classification", model="Davlan/xlm-roberta-base-amharic-sentiment")
-print(analyzer("ይህ አይሰማኝም"))
+print(analyzer(" "))
 ```
 
 ---
 
-## 🧾 Documentation
+##  Documentation
 
 - [`docs/PROJECT_DESCRIPTION.md`](./docs/PROJECT_DESCRIPTION.md)
 - [`docs/SETUP_GUIDE.md`](./docs/SETUP_GUIDE.md)
 
 ---
 
-## 🚀 Roadmap
+##  Roadmap
 
 - [ ] Phase 1: Backend Setup  
 - [ ] Phase 2: AI Model Integration  
@@ -160,26 +159,6 @@ print(analyzer("ይህ አይሰማኝም"))
 
 ---
 
-## 💡 Tips for Beginners
-- Start by testing backend locally before adding Telegram.
-- Commit small changes often (`git add . && git commit -m "message"`).
-- Use your ClickUp board to track progress.
-- Use Docker for easy environment setup.
 
----
 
-## 🧩 Contributing
-Pull requests are welcome!  
-For major changes, please open an issue first to discuss your ideas.
 
----
-
-## 📜 License
-This project is open source under the **MIT License**.  
-You are free to use, modify, and distribute it for educational or research purposes.
-
----
-
-## ❤️ Credits
-Developed by **Betelhem Kibret Getu**  
-With guidance and documentation prepared for beginner developers learning Python, FastAPI, and AI integration.

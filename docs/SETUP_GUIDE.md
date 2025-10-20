@@ -15,7 +15,7 @@ Before starting, make sure these tools are installed and verified:
 | Git | `git --version` |
 | Node.js & npm | `node -v` and `npm -v` |
 | Docker Desktop | `docker --version` |
-| PostgreSQL | `psql --version` (optional if using Docker) |
+| PostgreSQL | `psql --version` 
 | VS Code | Installed and working |
 
 ---
