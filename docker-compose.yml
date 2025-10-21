@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: guard_db
+    environment:
+      POSTGRES_USER: guard
+      POSTGRES_PASSWORD: guard123
+      POSTGRES_DB: guarddb
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: guard_backend
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://guard:guard123@db:5432/guarddb
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build: ./frontend
+    container_name: guard_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+    - ./frontend/dashboard:/app
+volumes:
+  db_data:

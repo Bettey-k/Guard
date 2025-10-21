@@ -58,7 +58,8 @@ guard/
 │   ├── api/
 │   ├── db/
 │   └── utils/
-├── dashboard/
+├── frontend/
+│   ├── dashboard
 ├── telegram_listener/
 ├── docs/
 └── docker-compose.yml
