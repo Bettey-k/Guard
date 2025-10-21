@@ -2,11 +2,15 @@ FROM node:20-bullseye
 
 WORKDIR /app
 
-# Copy everything inside dashboard
-COPY dashboard ./
+# Copy package files FIRST so Docker installs dependencies properly
+COPY dashboard/package*.json ./
 
-# Force a full fresh install
-RUN npm cache clean --force && npm install
+# Install dependencies (this will include tailwindcss)
+RUN npm install
+
+# Now copy the rest of the project
+COPY dashboard .
 
 EXPOSE 3000
+
 CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]
