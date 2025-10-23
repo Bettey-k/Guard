@@ -1,16 +1,18 @@
-FROM node:20-bullseye
-
+# 1️⃣ Use Node.js official image
+FROM node:22-alpine
 WORKDIR /app
 
-# Copy package files FIRST so Docker installs dependencies properly
+# 2️⃣ Copy only package files first (for caching)
 COPY dashboard/package*.json ./
 
-# Install dependencies (this will include tailwindcss)
+# 3️⃣ Install dependencies
 RUN npm install
 
-# Now copy the rest of the project
+# 4️⃣ Copy all dashboard source code
 COPY dashboard .
 
+# 5️⃣ Expose Next.js port
 EXPOSE 3000
 
+# 6️⃣ Start development server (bind to all interfaces)
 CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0"]

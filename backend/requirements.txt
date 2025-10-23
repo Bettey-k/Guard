@@ -29,4 +29,8 @@ requests              # To send data from Telegram listener to FastAPI backend
 # -----------------------------
 # 🧪 (Optional) Development Tools
 # -----------------------------
-pydantic              # Data validation and type checking for FastAPI models
+pydantic  
+tiktoken
+            # Data validation and type checking for FastAPI models
+protobuf
+sentencepiece
