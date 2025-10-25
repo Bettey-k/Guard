@@ -1,29 +1,25 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from ai.model import analyze_text
-from db.database import Base, engine, get_db
-from db.models import Analysis
+from fastapi import FastAPI
+from db import models, database
+from api.routes import router as api_router
+from fastapi.middleware.cors import CORSMiddleware
 
-# Initialize FastAPI
+
+models.Base.metadata.create_all(bind=database.engine)
+
 app = FastAPI(title="Guard AI Backend")
 
-# Create tables automatically
-Base.metadata.create_all(bind=engine)
+
+#  Add CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def home():
     return {"message": "Guard Backend Running Successfully"}
 
-@app.post("/analyze")
-def analyze(text: str, db: Session = Depends(get_db)):
-    result = analyze_text(text)
-    label = result[0]["label"]
-    score = result[0]["score"]
-
-    # Save to database
-    new_entry = Analysis(text=text, label=label, score=score)
-    db.add(new_entry)
-    db.commit()
-    db.refresh(new_entry)
-
-    return {"input": text, "analyze": result}
+app.include_router(api_router)
