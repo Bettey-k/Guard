@@ -1,0 +1,60 @@
+# =========================
+#  Python / FastAPI backend
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+instance/
+.env
+venv/
+.env.*
+.DS_Store
+
+# Local test data or logs
+*.log
+*.pid
+*.seed
+*.bak
+
+# Pytest and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# =========================
+#  Node / Next.js frontend
+# =========================
+frontend/dashboard/node_modules/
+frontend/dashboard/.next/
+frontend/dashboard/package-lock.json
+
+# =========================
+#  Docker
+# =========================
+*.tar
+*.bak
+**/Dockerfile~
+**/docker-compose.override.yml
+**/db_data/
+db_data/
+
+# =========================
+#  System & OS
+# =========================
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# =========================
+#  Hugging Face & cache
+# =========================
+huggingface/
+~/.cache/
+~/.huggingface/
