@@ -7,24 +7,25 @@ export default function Home() {
   const [result, setResult] = useState(null);
   const [history, setHistory] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:8000/history")
-      .then(res => res.json())
-      .then(data => setHistory(data))
-      .catch(err => console.error("Error fetching history:", err));
-  }, []);
+useEffect(() => {
+  fetch("http://localhost:8000/history")
+    .then(res => res.json())
+    .then(data => setHistory(data))
+    .catch(err => console.error("Error fetching history:", err));
+}, []);
 
-  const handleAnalyze = async () => {
-    const res = await fetch("http://localhost:8000/analyze", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text }),
-    });
-    const data = await res.json();
-    console.log("API result:", data);
+const handleAnalyze = async () => {
+  const res = await fetch("http://localhost:8000/analyze?text=" + encodeURIComponent(text), {
+    method: "POST",
+  });
+  const data = await res.json();
+  setResult(data);
 
-    setResult(data);
-  };
+  fetch("http://localhost:8000/history")
+    .then(res => res.json())
+    .then(data => setHistory(data));
+};
+
 
   return (
     <div style={{ padding: "2rem" }}>
